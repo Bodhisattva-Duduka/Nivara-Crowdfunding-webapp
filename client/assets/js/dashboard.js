@@ -35,15 +35,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   
     function renderCampaignCard(c){
-      const div = document.createElement('div'); div.className = 'card campaign-card';
-      const imgSrc = c.documents && c.documents.length ? (FILE_BASE + '/' + c.documents[0]) : '';
+      const div = document.createElement('div'); 
+      div.className = 'card campaign-card';
+
       const raised = c.raisedAmount || 0;
       const goal = c.goalAmount || 1;
       const pct = Math.min(100, Math.round((raised/goal)*100));
       const progressClass = pct >= 100 ? 'progress-complete' : 'progress-normal';
       
       div.innerHTML = `
-        ${imgSrc ? `<img src="${imgSrc}" class="campaign-img" />` : ''}
         <h3>${escapeHtml(c.title)}</h3>
         <p class="muted">${c.category} • ${c.creator?.name || 'Creator'}</p>
         <p>${escapeHtml((c.description||'').substring(0,160))}...</p>
@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       myCampaigns.innerHTML = '';
       if (campaigns.length === 0) myCampaigns.innerHTML = '<p class="small">You have not created any campaigns yet.</p>';
       campaigns.forEach(c => {
-        const div = document.createElement('div'); div.className='card campaign-card';
-        const imgSrc = c.documents && c.documents.length ? (FILE_BASE + '/' + c.documents[0]) : '';
+        const div = document.createElement('div'); 
+        div.className='card campaign-card';
+
         const raised = c.raisedAmount || 0; 
         const pct = Math.min(100, Math.round((raised/(c.goalAmount||1))*100));
         const progressClass = pct >= 100 ? 'progress-complete' : 'progress-normal';
         
         div.innerHTML = `
-          ${imgSrc? `<img src="${imgSrc}" class="campaign-img" />` : ''}
           <h3>${escapeHtml(c.title)}</h3>
           <p class="muted">${c.category}</p>
           <div class="progress-bar"><div class="progress ${progressClass}" style="width:${pct}%"></div></div>
@@ -147,4 +147,4 @@ document.addEventListener('DOMContentLoaded', async () => {
       return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     }
   
-  });
+});

@@ -23,14 +23,15 @@ function clearUser(){ localStorage.removeItem("user"); }
 async function apiFetch(path, opts = {}){
   // path is full path after /api, e.g. '/auth/login' or '/campaigns'
   const token = getToken();
-  const headers = opts.headers || {};
+  const headers = opts.headers ? { ...opts.headers } : {};
   if (token) headers['Authorization'] = 'Bearer ' + token;
 
   const config = { method: opts.method || 'GET', headers };
 
   if (opts.body){
     if (opts.body instanceof FormData){
-      config.body = opts.body; // browser sets Content-Type boundary automatically
+      // ✅ Let browser set Content-Type with boundary automatically
+      config.body = opts.body;
     } else {
       headers['Content-Type'] = 'application/json';
       config.body = JSON.stringify(opts.body);
@@ -44,6 +45,7 @@ async function apiFetch(path, opts = {}){
     try { data = text ? JSON.parse(text) : null; } catch(e){ data = text; }
     return { ok: res.ok, status: res.status, data };
   } catch (err) {
+    console.error("API Fetch Error:", err);  // ✅ extra logging for debugging
     return { ok:false, status:0, data: { message: err.message } };
   }
 }

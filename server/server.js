@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require('path');
 const cors = require("cors");
+
 dotenv.config();
 connectDB();
 
@@ -13,14 +14,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Serve uploads folder as static
+// ✅ Serve uploads folder (important!)
+// Serve uploads safely (no folder listing, only file access if path is known)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads'), {
+  index: false, // ❌ disables directory index
+  redirect: false,
+}));
+
+
+// ✅ Serve client folder
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/campaigns', require('./routes/campaigns'));
 app.use('/api/donations', require('./routes/donations'));
-app.use(express.static(path.join(__dirname, '../client')));
 
 // Root route
 app.get('/', (req, res) => {

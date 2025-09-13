@@ -6,7 +6,6 @@ const { protect, restrictTo } = require('../middlewares/auth');
 
 const router = express.Router();
 
-
 // @desc    Make a donation to a campaign
 // @route   POST /api/donations/:campaignId
 // @access  Private (Donors only)
@@ -33,10 +32,14 @@ router.post('/:campaignId', protect, restrictTo('Donor'), async (req, res) => {
 
     // Update campaign progress
     campaign.raisedAmount += amount;
-    campaign.donors.push({ donor: req.user._id, amount });
+
+    // ✅ clamp raisedAmount so it never exceeds the goal
     if (campaign.raisedAmount >= campaign.goalAmount) {
+      campaign.raisedAmount = campaign.goalAmount;
       campaign.status = 'Completed';
     }
+
+    campaign.donors.push({ donor: req.user._id, amount });
 
     await campaign.save();
 
@@ -45,7 +48,6 @@ router.post('/:campaignId', protect, restrictTo('Donor'), async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
-
 
 // @desc    Get all donations by logged-in donor
 // @route   GET /api/donations/my
@@ -60,7 +62,6 @@ router.get('/my', protect, restrictTo('Donor'), async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
-
 
 // @desc    Get all donations for a campaign
 // @route   GET /api/donations/campaign/:campaignId

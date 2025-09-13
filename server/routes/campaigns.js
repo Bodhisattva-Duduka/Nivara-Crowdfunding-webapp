@@ -1,8 +1,8 @@
-// routes/campaigns.js
 const express = require('express');
 const Campaign = require('../models/Campaign');
 const { protect } = require('../middlewares/auth');
 const upload = require('../config/upload');
+const path = require('path');
 
 const router = express.Router();
 
@@ -19,7 +19,10 @@ router.post('/', protect, upload.array('documents', 3), async (req, res) => {
 
     const { title, description, category, goalAmount } = req.body;
 
-    const documents = req.files ? req.files.map(file => file.path) : [];
+    // ✅ Store relative URLs instead of system file paths
+    const documents = req.files
+      ? req.files.map(file => `/uploads/${path.basename(file.path)}`)
+      : [];
 
     const campaign = new Campaign({
       title,
