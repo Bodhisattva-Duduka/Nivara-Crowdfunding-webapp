@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Campaign Details | Nivara</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      background: #fafbfc;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #222;
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 2rem;
+      background: #fff;
+      border-bottom: 1px solid #ececec;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .navbar .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #0bb6c5;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .navbar .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .navbar .nav-links a:hover {
+      color: #0bb6c5;
+    }
+    .navbar .profile-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .navbar .profile-btn {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 8px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .navbar .profile-btn svg {
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: middle;
+    }
+    .navbar .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background: #fff;
+      min-width: 140px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      z-index: 1;
+      margin-top: 0.5rem;
+    }
+    .navbar .profile-dropdown:hover .dropdown-content {
+      display: block;
+    }
+    .navbar .dropdown-content a {
+      color: #222;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      display: block;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .navbar .dropdown-content a:hover {
+      background: #f2fafd;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .left-section {
+      flex: 7;
+      min-width: 0;
+    }
+    .right-section {
+      flex: 3;
+      min-width: 280px;
+      max-width: 370px;
+      width: 100%;
+    }
+    .back-btn {
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #222;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background: #f2fafd;
+    }
+    .campaign-title-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+    .badge.medical {
+      background: #e6f7fa;
+      color: #0bb6c5;
+    }
+    .badge.critical {
+      background: #fff3cd;
+      color: #b8860b;
+      border: 1px solid #ffeeba;
+    }
+    .campaign-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0.2rem 0;
+      display: inline-block;
+    }
+    .campaign-meta {
+      color: #888;
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .campaign-meta .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .campaign-image-placeholder {
+      background: linear-gradient(120deg, #f2fafd 0%, #f7fafd 100%);
+      border-radius: 14px;
+      border: 1px solid #ececec;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #b3c2c8;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      margin-top: 0.5rem;
+      text-align: center;
+      gap: 0.7rem;
+    }
+    .campaign-image-placeholder svg {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #ececec;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+    }
+    .about-text {
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .medical-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-top: 0.7rem;
+    }
+    .medical-details .detail-group {
+      flex: 1 1 180px;
+      min-width: 160px;
+      margin-bottom: 0.7rem;
+    }
+    .medical-details .label {
+      color: #888;
+      font-size: 0.97rem;
+      margin-bottom: 0.2rem;
+    }
+    .medical-details .value {
+      font-weight: 600;
+      color: #222;
+      font-size: 1.05rem;
+    }
+
+    /* Donation Box */
+    .donation-box {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #ececec;
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .donation-box h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .progress-bar-bg {
+      background: #f2fafd;
+      border-radius: 8px;
+      height: 8px;
+      width: 100%;
+      margin: 0.7rem 0 1.1rem 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background: #f45b7a;
+      height: 100%;
+      border-radius: 8px;
+      transition: width 0.4s;
+    }
+    .donation-amount {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0bb6c5;
+      text-align: center;
+      margin-bottom: 0.2rem;
+    }
+    .donation-goal {
+      color: #888;
+      font-size: 1.05rem;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .donation-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      color: #444;
+      font-size: 1rem;
+    }
+    .donate-btn {
+      width: 100%;
+      background: #0bb6c5;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1.2rem;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .donate-btn:hover {
+      background: #099aa7;
+    }
+    .donation-meta {
+      font-size: 0.98rem;
+      color: #888;
+      margin-top: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .donation-meta .category-badge {
+      display: inline-block;
+      background: #e6f7fa;
+      color: #0bb6c5;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 6px;
+      padding: 0.2rem 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    @media (max-width: 1000px) {
+      .container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .right-section {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 0.3rem;
+      }
+      .card {
+        padding: 1rem 0.5rem;
+      }
+      .donation-box {
+        padding: 1.2rem 0.7rem 1rem 0.7rem;
+      }
+      .campaign-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <svg width="28" height="28" fill="none" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" stroke="#0bb6c5" stroke-width="2"/><path d="M9.5 13.5C9.5 10.7386 11.7386 8.5 14.5 8.5C17.2614 8.5 19.5 10.7386 19.5 13.5C19.5 16.2614 17.2614 18.5 14.5 18.5C11.7386 18.5 9.5 16.2614 9.5 13.5Z" stroke="#0bb6c5" stroke-width="2"/></svg>
+      Nivara
+    </div>
+    <div class="nav-links">
+      <a href="campaigns.html">Browse Campaigns</a>
+    </div>
+    <div>
+      <a href="login.html" class="btn secondary" style="margin-left:1rem;">Sign In</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="left-section">
+      <a href="campaigns.html" class="back-btn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 18 18"><path d="M12 15l-6-6 6-6"/></svg>
+        Back to Campaigns
+      </a>
+      <div class="campaign-title-row">
+        <span class="badge medical">Medical</span>
+        <span class="badge critical">Critical</span>
+        <span class="campaign-title" id="campaignTitle">Heart Surgery for Little Emma</span>
+      </div>
+      <div class="campaign-meta">
+        <span class="meta-item">
+          <svg width="16" height="16" fill="none" stroke="#888" stroke-width="2" viewBox="0 0 16 16"><circle cx="8" cy="5" r="3"/><path d="M2 14c0-2 4-2 6-2s6 0 6 2"/></svg>
+          <span id="creatorName">By Sarah Johnson</span>
+        </span>
+        <span class="meta-item">
+          <svg width="16" height="16" fill="none" stroke="#888" stroke-width="2" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/><path d="M8 4v4l2 2"/></svg>
+          <span id="createdAgo">608 days ago</span>
+        </span>
+      </div>
+      <div class="campaign-image-placeholder">
+        <svg fill="none" stroke="#b3c2c8" stroke-width="2" viewBox="0 0 48 48"><path d="M24 34V14M14 24h20"/><circle cx="24" cy="24" r="20"/></svg>
+        <div>Campaign Image<br>(Coming Soon)</div>
+      </div>
+      <div class="card">
+        <h3>About This Campaign</h3>
+        <div class="about-text" id="aboutText">
+          Emma, a 7-year-old girl, needs urgent heart surgery. Her family cannot afford the medical expenses. Every donation brings her closer to a healthy life.
+        </div>
+      </div>
+      <div class="card">
+        <h3>Medical Details</h3>
+        <div class="medical-details">
+          <div class="detail-group">
+            <div class="label">Patient</div>
+            <div class="value" id="patientName">Emma Thompson, 7 years old</div>
+          </div>
+          <div class="detail-group">
+            <div class="label">Hospital</div>
+            <div class="value" id="hospitalName">Children's Medical Center</div>
+          </div>
+          <div class="detail-group">
+            <div class="label">Treatment Type</div>
+            <div class="value" id="treatmentType">Cardiac Surgery</div>
+          </div>
+          <div class="detail-group">
+            <div class="label">Estimated Duration</div>
+            <div class="value" id="duration">2-3 months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="donation-box">
+        <h4>Support This Campaign</h4>
+        <div class="progress-bar-bg">
+          <div class="progress-bar" id="progressBar" style="width:75%"></div>
+        </div>
+        <div class="donation-amount" id="raisedAmount">$18,750</div>
+        <div class="donation-goal" id="goalText">raised of $25,000 goal</div>
+        <div class="donation-stats">
+          <span><span id="percentFunded">75</span>% Funded</span>
+          <span><span id="donorCount">0</span> Donors</span>
+          <span><span id="daysAgo">608</span> Days ago</span>
+        </div>
+        <button class="donate-btn" id="donateBtn">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 18 18"><path d="M9 3v12M3 9h12"/></svg>
+          Donate Now
+        </button>
+        <div class="donation-meta">
+          <div><span class="category-badge">medical</span></div>
+          <div>Created <span id="createdDate">1/15/2024</span></div>
+          <div>Last Update <span id="updatedDate">1/20/2024</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Example: Replace with real API call and dynamic data
+    const campaign = {
+      title: "Heart Surgery for Little Emma",
+      categories: ["Medical", "Critical"],
+      creator: "Sarah Johnson",
+      createdAt: "2024-01-15T00:00:00Z",
+      updatedAt: "2024-01-20T00:00:00Z",
+      description: "Emma, a 7-year-old girl, needs urgent heart surgery. Her family cannot afford the medical expenses. Every donation brings her closer to a healthy life.",
+      patient: "Emma Thompson, 7 years old",
+      hospital: "Children's Medical Center",
+      treatmentType: "Cardiac Surgery",
+      duration: "2-3 months",
+      raised: 18750,
+      goal: 25000,
+      donors: 0
+    };
+
+    // Utility functions
+    function daysAgo(dateStr) {
+      const now = new Date();
+      const date = new Date(dateStr);
+      const diff = Math.floor((now - date) / (1000 * 60 * 60 * 24));
+      return diff;
+    }
+    function formatMoney(n) {
+      return '$' + n.toLocaleString();
+    }
+
+    // Populate data
+    document.getElementById('campaignTitle').textContent = campaign.title;
+    document.getElementById('creatorName').textContent = `By ${campaign.creator}`;
+    document.getElementById('createdAgo').textContent = `${daysAgo(campaign.createdAt)} days ago`;
+    document.getElementById('aboutText').textContent = campaign.description;
+    document.getElementById('patientName').textContent = campaign.patient;
+    document.getElementById('hospitalName').textContent = campaign.hospital;
+    document.getElementById('treatmentType').textContent = campaign.treatmentType;
+    document.getElementById('duration').textContent = campaign.duration;
+    document.getElementById('raisedAmount').textContent = formatMoney(campaign.raised);
+    document.getElementById('goalText').textContent = `raised of ${formatMoney(campaign.goal)} goal`;
+    const percent = Math.round((campaign.raised / campaign.goal) * 100);
+    document.getElementById('progressBar').style.width = percent + '%';
+    document.getElementById('percentFunded').textContent = percent;
+    document.getElementById('donorCount').textContent = campaign.donors;
+    document.getElementById('daysAgo').textContent = daysAgo(campaign.createdAt);
+    document.getElementById('createdDate').textContent = new Date(campaign.createdAt).toLocaleDateString();
+    document.getElementById('updatedDate').textContent = new Date(campaign.updatedAt).toLocaleDateString();
+
+    // Donate button (demo)
+    document.getElementById('donateBtn').onclick = function() {
+      alert('Donation functionality coming soon!');
+    };
+  </script>
+</body>
+</html>
