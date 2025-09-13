@@ -1,4 +1,14 @@
 {
+  "name": "nivara-crowdfunding-webapp",
+  "version": "1.0.0",
+  "description": "Crowdfunding platform backend for medical and education expenses",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -10,23 +20,16 @@
     "mongoose": "^8.18.1",
     "morgan": "^1.10.1",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10"
-  },
-  "name": "nivara-crowdfunding-webapp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Bodhisattva-Duduka/Nivara-Crowdfunding-webapp.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["crowdfunding", "nodejs", "express", "mongodb"],
+  "author": "Bodhisattva Duduka",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Bodhisattva-Duduka/Nivara-Crowdfunding-webapp/issues"
   },
