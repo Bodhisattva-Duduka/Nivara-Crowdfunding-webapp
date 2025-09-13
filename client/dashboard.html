@@ -1,56 +1,112 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dashboard — Nivara</title>
+
+  <!-- Bootstrap (for UI only) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Your existing site styles (kept) -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-<body>
-  <div class="container">
-    <div class="topbar">
-      <div class="logo">Nivara</div>
-      <nav>
-        <a class="link" href="/campaigns.html">Browse campaigns</a>
-        <button id="logoutBtn" class="btn secondary">Logout</button>
+<body class="bg-light">
+
+  <!-- TOPBAR (keeps the same nav items and logoutBtn id) -->
+  <header class="bg-white shadow-sm">
+    <div class="container d-flex align-items-center justify-content-between py-2">
+      <div class="d-flex align-items-center gap-3">
+        <div class="logo fw-bold fs-4 text-primary">Nivara</div>
+      </div>
+
+      <nav class="d-flex align-items-center gap-3">
+        <a class="link small text-muted" href="/campaigns.html">Browse campaigns</a>
+        <button id="logoutBtn" class="btn secondary btn-sm">Logout</button>
       </nav>
     </div>
+  </header>
 
+  <main class="container my-4">
+
+    <!-- user greeting (id kept) -->
     <div id="userGreeting" style="margin-top:14px"></div>
 
-    <!-- Donor view -->
+    <!-- Donor view (hidden by JS initially using the 'hidden' class) -->
     <section id="donorView" class="hidden">
-      <h3>Active campaigns</h3>
-      <div id="campaignGrid" class="grid"></div>
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h3 class="h5 mb-0">Active campaigns</h3>
+        <div class="small text-muted">Explore recent campaigns</div>
+      </div>
+
+      <!-- grid: keep your 'grid' class for existing CSS + bootstrap row for layout -->
+      <div id="campaignGrid" class="grid row g-3"></div>
     </section>
 
-    <!-- Creator view -->
+    <!-- Creator view (hidden by JS initially using the 'hidden' class) -->
     <section id="creatorView" class="hidden">
-      <h3>Your campaigns</h3>
-      <div id="myCampaigns" class="grid"></div>
+      <div class="d-flex align-items-center justify-content-between mb-3">
+        <h3 class="h5 mb-0">Your campaigns</h3>
+        <div class="small text-muted">Manage your campaigns</div>
+      </div>
 
-      <hr style="margin:18px 0" />
-      <h3>Create new campaign</h3>
-      <div class="card" style="padding:14px;">
-        <form id="createForm">
-          <input id="c-title" type="text" placeholder="Title" required />
-          <textarea id="c-description" placeholder="Short description" required></textarea>
-          <input id="c-goal" type="number" placeholder="Goal Amount (₹)" min="1" required />
-          <select id="c-category" required>
-            <option value="Medical">Medical</option>
-            <option value="Education">Education</option>
-          </select>
-          <label class="small">Upload documents / images (jpg/png/pdf) — optional</label>
-          <input id="c-docs" type="file" multiple accept=".jpg,.jpeg,.png,.pdf" />
-          <div class="form-actions">
-            <button type="submit" class="btn">Create Campaign</button>
+      <div id="myCampaigns" class="grid row g-3"></div>
+
+      <hr class="my-4" />
+
+      <h3 class="h6 mb-3">Create new campaign</h3>
+      <div class="card p-3 mb-4">
+        <!-- keep form id exactly as before and enctype for file uploads -->
+        <form id="createForm" enctype="multipart/form-data" novalidate>
+          <div class="row g-3">
+            <div class="col-12">
+              <label for="c-title" class="form-label small fw-semibold">Title</label>
+              <input id="c-title" type="text" class="form-control" placeholder="Title" required />
+            </div>
+
+            <div class="col-12">
+              <label for="c-description" class="form-label small fw-semibold">Short description</label>
+              <textarea id="c-description" class="form-control" placeholder="Short description" rows="3" required></textarea>
+            </div>
+
+            <div class="col-md-6">
+              <label for="c-goal" class="form-label small fw-semibold">Goal Amount (₹)</label>
+              <input id="c-goal" type="number" class="form-control" placeholder="Goal Amount (₹)" min="1" required />
+            </div>
+
+            <div class="col-md-6">
+              <label for="c-category" class="form-label small fw-semibold">Category</label>
+              <select id="c-category" class="form-select" required>
+                <option value="Medical">Medical</option>
+                <option value="Education">Education</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-semibold">Upload documents / images (optional)</label>
+              <input id="c-docs" type="file" multiple accept=".jpg,.jpeg,.png,.pdf" class="form-control" />
+              <div class="form-text small">Supported: JPG / PNG / PDF. Files served from /uploads.</div>
+            </div>
+
+            <div class="col-12 text-end">
+              <div class="form-actions">
+                <!-- keep your btn class so any custom styles remain -->
+                <button type="submit" class="btn btn-success">Create Campaign</button>
+              </div>
+            </div>
           </div>
         </form>
-        <div id="create-msg" class="msg"></div>
+
+        <!-- create-msg kept exactly as-is -->
+        <div id="create-msg" class="msg mt-2"></div>
       </div>
     </section>
-  </div>
+  </main>
 
+  <!-- Bootstrap JS (optional for components) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Keep your existing scripts (order preserved) -->
   <script src="/assets/js/main.js"></script>
   <script src="/assets/js/dashboard.js"></script>
 </body>

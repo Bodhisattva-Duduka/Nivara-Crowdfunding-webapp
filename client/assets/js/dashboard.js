@@ -40,12 +40,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       const raised = c.raisedAmount || 0;
       const goal = c.goalAmount || 1;
       const pct = Math.min(100, Math.round((raised/goal)*100));
+      const progressClass = pct >= 100 ? 'progress-complete' : 'progress-normal';
+      
       div.innerHTML = `
         ${imgSrc ? `<img src="${imgSrc}" class="campaign-img" />` : ''}
         <h3>${escapeHtml(c.title)}</h3>
         <p class="muted">${c.category} • ${c.creator?.name || 'Creator'}</p>
         <p>${escapeHtml((c.description||'').substring(0,160))}...</p>
-        <div class="progress-bar"><div class="progress" style="width:${pct}%"></div></div>
+        <div class="progress-bar"><div class="progress ${progressClass}" style="width:${pct}%"></div></div>
         <p class="small">₹${raised} raised of ₹${goal} • ${pct}%</p>
         <div style="display:flex;gap:8px">
           <a class="btn" href="/campaign-details.html?id=${c._id}">View Details</a>
@@ -65,12 +67,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       campaigns.forEach(c => {
         const div = document.createElement('div'); div.className='card campaign-card';
         const imgSrc = c.documents && c.documents.length ? (FILE_BASE + '/' + c.documents[0]) : '';
-        const raised = c.raisedAmount || 0; const pct = Math.min(100, Math.round((raised/(c.goalAmount||1))*100));
+        const raised = c.raisedAmount || 0; 
+        const pct = Math.min(100, Math.round((raised/(c.goalAmount||1))*100));
+        const progressClass = pct >= 100 ? 'progress-complete' : 'progress-normal';
+        
         div.innerHTML = `
           ${imgSrc? `<img src="${imgSrc}" class="campaign-img" />` : ''}
           <h3>${escapeHtml(c.title)}</h3>
           <p class="muted">${c.category}</p>
-          <div class="progress-bar"><div class="progress" style="width:${pct}%"></div></div>
+          <div class="progress-bar"><div class="progress ${progressClass}" style="width:${pct}%"></div></div>
           <p class="small">₹${raised} raised of ₹${c.goalAmount}</p>
           <div style="display:flex;gap:8px">
             <a class="link" href="/campaign-details.html?id=${c._id}">View</a>
@@ -121,6 +126,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (user.role === 'Donor'){ donorView.classList.remove('hidden'); await loadCampaigns(); }
     if (user.role === 'Creator'){ creatorView.classList.remove('hidden'); await loadMyCampaigns(); await loadCampaigns(); }
   
+    // Add CSS for progress bar colors
+    if (!document.getElementById('progress-styles')) {
+      const style = document.createElement('style');
+      style.id = 'progress-styles';
+      style.textContent = `
+        .progress-normal {
+          background-color: #007bff !important;
+        }
+        .progress-complete {
+          background-color: #28a745 !important;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  
     // helper to escape HTML
     function escapeHtml(s){
       if(!s) return '';
@@ -128,4 +148,3 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   
   });
-  

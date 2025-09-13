@@ -1,26 +1,44 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nivara — Home</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-<body>
-  <div class="container center">
-    <div class="card" style="max-width:720px;">
-      <h1 style="margin:6px 0">Nivara</h1>
-      <p class="small" style="margin-bottom:12px">Crowdfunding for medical and education causes.</p>
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:16px">
-        <a class="btn" href="/login.html">Sign In</a>
-        <a class="btn secondary" href="/register.html">Sign Up</a>
+<body class="bg-light d-flex align-items-center" style="min-height:100vh;">
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0 rounded-4">
+          <div class="card-body text-center p-5">
+
+            <!-- Branding -->
+            <h1 class="fw-bold mb-2 text-primary">Nivara</h1>
+            <p class="text-muted mb-4">Crowdfunding for medical and education causes.</p>
+
+            <!-- Auth Buttons -->
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-4">
+              <a class="btn btn-primary btn-lg px-4" href="/login.html">Sign In</a>
+              <a class="btn btn-outline-primary btn-lg px-4" href="/register.html">Sign Up</a>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- Public Browsing -->
+            <p class="text-muted mb-2">Or browse campaigns publicly:</p>
+            <a class="btn btn-link text-decoration-none" href="/campaigns.html">Browse Campaigns</a>
+
+          </div>
+        </div>
       </div>
-
-      <hr style="margin:18px 0"/>
-
-      <p class="small">Or browse campaigns publicly:</p>
-      <a class="link" href="/campaigns.html">Browse Campaigns</a>
     </div>
   </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
