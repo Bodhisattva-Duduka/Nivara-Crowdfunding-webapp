@@ -2,43 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nivara — Home</title>
-  <!-- Bootstrap CSS -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nivara — Where Hope Meets Help</title>
+
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
-<body class="bg-light d-flex align-items-center" style="min-height:100vh;">
+<body>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-        <div class="card shadow-lg border-0 rounded-4">
-          <div class="card-body text-center p-5">
+  <!-- Navbar -->
+  <nav class="navbar navbar-light bg-white shadow-sm sticky-top">
+    <div class="container d-flex justify-content-between">
+      <a class="navbar-brand fw-bold text-primary fs-4" href="#">Nivara</a>
+      <div>
+        <a class="btn btn-link text-muted me-2" href="/campaigns.html">Browse Campaigns</a>
+        <a class="btn btn-primary" href="/login.html">Sign In</a>
+      </div>
+    </div>
+  </nav>
 
-            <!-- Branding -->
-            <h1 class="fw-bold mb-2 text-primary">Nivara</h1>
-            <p class="text-muted mb-4">Crowdfunding for medical and education causes.</p>
+  <!-- Hero -->
+  <section class="hero text-center text-white d-flex align-items-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold">Where Hope Meets Help</h1>
+      <p class="lead">Nivara connects hearts and resources to make a difference in medical emergencies and education dreams.</p>
+      <div class="d-flex justify-content-center gap-3 mt-3">
+        <a href="/campaigns.html" class="btn btn-light btn-lg"><i class="bi bi-heart"></i> Browse Campaigns</a>
+        <a href="/dashboard.html" class="btn btn-outline-light btn-lg"><i class="bi bi-plus-circle"></i> Start a Campaign</a>
+      </div>
+      <div class="stats d-flex justify-content-center gap-5 mt-5">
+        <div><h3 id="stat-campaigns">0</h3><p class="small">Active Campaigns</p></div>
+        <div><h3 id="stat-raised">$0</h3><p class="small">Total Raised</p></div>
+        <div><h3 id="stat-medical">0</h3><p class="small">Medical Cases</p></div>
+        <div><h3 id="stat-education">0</h3><p class="small">Education Dreams</p></div>
+      </div>
+    </div>
+  </section>
 
-            <!-- Auth Buttons -->
-            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-4">
-              <a class="btn btn-primary btn-lg px-4" href="/login.html">Sign In</a>
-              <a class="btn btn-outline-primary btn-lg px-4" href="/register.html">Sign Up</a>
-            </div>
-
-            <hr class="my-4">
-
-            <!-- Public Browsing -->
-            <p class="text-muted mb-2">Or browse campaigns publicly:</p>
-            <a class="btn btn-link text-decoration-none" href="/campaigns.html">Browse Campaigns</a>
-
-          </div>
+  <!-- Why Choose -->
+  <section class="py-5 bg-light text-center">
+    <div class="container">
+      <h2 class="fw-bold mb-4">Why Choose Nivara?</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <i class="bi bi-shield-lock fs-1 text-primary"></i>
+          <h5 class="mt-3">Secure & Transparent</h5>
+          <p class="small text-muted">Every campaign is verified and donations are tracked with real-time progress updates.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="bi bi-lightning-charge fs-1 text-success"></i>
+          <h5 class="mt-3">Instant Impact</h5>
+          <p class="small text-muted">Your donations reach beneficiaries quickly for urgent medical treatment or education fees.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="bi bi-people fs-1 text-info"></i>
+          <h5 class="mt-3">Community Driven</h5>
+          <p class="small text-muted">Join changemakers who believe in the power of compassion and collective support.</p>
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Featured Campaigns -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold">Featured Campaigns</h2>
+      <p class="text-muted">Stories of hope that need your support today</p>
+      <div id="featuredCampaigns" class="row g-4 mt-3"></div>
+      <a href="/campaigns.html" class="btn btn-outline-primary mt-4">View All Campaigns</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-5 text-white text-center cta">
+    <div class="container">
+      <h2 class="fw-bold">Ready to Make a Difference?</h2>
+      <p>Support a cause or create your own campaign — every action counts.</p>
+      <div class="d-flex justify-content-center gap-3 mt-3">
+        <a href="/campaigns.html" class="btn btn-light btn-lg">Start Donating</a>
+        <a href="/dashboard.html" class="btn btn-outline-light btn-lg">Create Campaign</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-3 small">
+    © 2025 Nivara — All rights reserved
+  </footer>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>

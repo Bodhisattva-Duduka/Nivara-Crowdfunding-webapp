@@ -56,3 +56,35 @@ textarea{min-height:100px;resize:vertical}
   .topbar{flex-direction:column;gap:6px}
   .grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
 }
+/* Hero Section */
+.hero {
+  background: linear-gradient(to right, #1e90ff, #00bcd4);
+  min-height: 80vh;
+  padding: 80px 20px;
+}
+.hero .stats h3 {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.hero .stats p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* CTA */
+.cta {
+  background: linear-gradient(to right, #00bcd4, #1e90ff);
+}
+
+/* Campaign cards */
+.campaign-card {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  transition: 0.2s ease;
+}
+.campaign-card:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
