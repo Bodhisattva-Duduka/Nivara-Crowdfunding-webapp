@@ -30,16 +30,16 @@ Nivara is a full-stack web application built using the **MERN Stack** to provide
 ## 📸 Screenshots
 
 ### 🏠 Landing Page  
-![Landing Page](./screenshots/landing.png)
+![!\[Landing Page\]screencapture-localhost-5000-2025-09-14-13_16_42.png](screencapture-localhost-5000-2025-09-14-13_16_42.png)
 
 ### 📑 Campaigns Listing  
-![Campaigns](./screenshots/campaigns.png)
+![Campaigns](screencapture-localhost-5000-campaigns-html-2025-09-14-13_17_18.png)
 
 ### 📄 Campaign Details  
-![Campaign Details](./screenshots/campaign-details.png)
+![Campaign Details](screencapture-localhost-5000-campaign-details-html-2025-09-14-13_19_09.png)
 
 ### 🎯 Dashboard  
-![Dashboard](./screenshots/dashboard.png)
+![Dashboard](screencapture-localhost-5000-dashboard-html-2025-09-14-13_18_19.png)
 
 ---
 
@@ -47,8 +47,8 @@ Nivara is a full-stack web application built using the **MERN Stack** to provide
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/nivara-crowdfunding-webapp.git
-cd nivara-crowdfunding-webapp
+git clone https://github.com/Bodhisattva-Duduka/Nivara-Crowdfunding-webapp.git
+cd Nivara-Crowdfunding-webapp
 ```
 
 ### 2. Install dependencies
