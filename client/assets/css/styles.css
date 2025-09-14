@@ -58,7 +58,7 @@ textarea{min-height:100px;resize:vertical}
 }
 /* Hero Section */
 .hero {
-  background: linear-gradient(to right, #1e90ff, #00bcd4);
+  background: linear-gradient(to right, #4da6ff, #6deeff);
   min-height: 80vh;
   padding: 80px 20px;
 }
@@ -74,7 +74,7 @@ textarea{min-height:100px;resize:vertical}
 
 /* CTA */
 .cta {
-  background: linear-gradient(to right, #00bcd4, #1e90ff);
+  background: linear-gradient(to right, #59ecff, #54a9ff);
 }
 
 /* Campaign cards */
